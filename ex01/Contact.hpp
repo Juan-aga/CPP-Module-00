@@ -10,8 +10,9 @@ public:
 	Contact( void );
 	~Contact( void );
 
-	void	add( void );
-	void	print( void ) const;
+	void		add( void );
+	void		print( void ) const;
+	std::string	getInfoContact( int index ) const;
 
 	static int	getIndex( void );
 
@@ -20,7 +21,7 @@ private:
 	
 	static int	_index;
 	
-	bool	isnum(const std::string& s) const;
+	bool		isnum(const std::string& s) const;
 	
 	static void	increment( void );
 };

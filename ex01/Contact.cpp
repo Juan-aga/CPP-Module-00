@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Contact.hpp"
 #include <cstdlib>
+#include <limits>
 
 Contact::Contact( void )
 {
@@ -12,10 +13,6 @@ Contact::~Contact( void )
 {
 	for (int i = 0; i < DATA_SIZE; i++)
 		this->data_contact[i].clear();
-//	std::string replace[DATA_SIZE];
-
-//	this->data_contact = replace;
-//	this->data_contact.clear();
 	Contact::_index -= 1;
 	if (DEBUG)
 		std::cout << "Destructor " << Contact::_index << " Contact" << std::endl;
@@ -50,7 +47,8 @@ void	Contact::add( void )
 			if (std::cin.fail())
 			{
 				std::cerr << "\nFail to get input." << std::endl;
-				exit (1);
+				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+				return ;
 			}
 		}
 	}
@@ -67,6 +65,16 @@ bool	Contact::isnum(const std::string& s) const
 			return false;
 	}
 	return true;
+}
+
+std::string	Contact::getInfoContact( int index ) const
+{
+	if (index >= DATA_SIZE)
+	{
+		std::cerr << "Info Contact out of range." << std::endl;
+		return "";
+	}
+	return data_contact[index];
 }
 
 void	Contact::print( void ) const
