@@ -17,7 +17,8 @@ int	main( void )
 			return 1;
 		}
 		if (command == "ADD")
-			prueba.contacts[Contact::getIndex()].add();
+			prueba.add();
+//			prueba.contacts[Contact::getIndex()].add();
 	}
 	return 0;
 }

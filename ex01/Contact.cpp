@@ -10,6 +10,12 @@ Contact::Contact( void )
 
 Contact::~Contact( void )
 {
+	for (int i = 0; i < DATA_SIZE; i++)
+		this->data_contact[i].clear();
+//	std::string replace[DATA_SIZE];
+
+//	this->data_contact = replace;
+//	this->data_contact.clear();
 	Contact::_index -= 1;
 	if (DEBUG)
 		std::cout << "Destructor " << Contact::_index << " Contact" << std::endl;
