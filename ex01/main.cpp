@@ -1,10 +1,10 @@
 #include "Contact.hpp"
+#include "PhoneBook.hpp"
 #include <iostream>
-#include <map>
 
 int	main( void )
 {
-	Contact		prueba[8];
+	PhoneBook	prueba;
 	std::string	command;
 
 	while (command != "EXIT")
@@ -17,14 +17,7 @@ int	main( void )
 			return 1;
 		}
 		if (command == "ADD")
-			prueba[Contact::getIndex()].add();
+			prueba.contacts[Contact::getIndex()].add();
 	}
-/*	while (Contact::getIndex() < 1) 
-	{
-		prueba[i].add();
-		i++;
-	}
-	prueba[0].print();
-	i--;
-*/	return 0;
+	return 0;
 }

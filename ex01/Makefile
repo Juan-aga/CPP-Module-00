@@ -6,7 +6,7 @@
 #    By: juan-aga <juan-aga@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/24 11:04:21 by juan-aga          #+#    #+#              #
-#    Updated: 2023/09/28 10:52:38 by juan-aga         ###   ########.fr        #
+#    Updated: 2023/09/28 13:09:36 by juan-aga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,10 +25,10 @@ endif
 
 RM		= rm -rf
 
-SRC		=	main.cpp \
-			Contact.cpp \
-			Data.cpp
-#			PhoneBook.cpp 
+SRC		=	main.cpp	\
+			Contact.cpp	\
+			Data.cpp	\
+			PhoneBook.cpp 
 
 all:		${NAME}
 
