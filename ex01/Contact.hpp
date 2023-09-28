@@ -11,15 +11,18 @@ public:
 	~Contact( void );
 
 	void	add( void );
+	void	print( void ) const;
 
 	static int	getIndex( void );
 
 private:
 	std::string data_contact[DATA_SIZE];
+	
 	static int	_index;
-
+	
+	bool	isnum(const std::string& s) const;
+	
 	static void	increment( void );
-
 };
 
 #endif

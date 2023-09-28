@@ -25,26 +25,49 @@ void	Contact::increment( void )
 
 void	Contact::add( void )
 {
+	std::cin.clear();
 	if (DEBUG)
 		std::cout << "Add to " << Contact::_index << std::endl;
 	for (int i = 0; i < DATA_SIZE ; i++)
 	{
-		std::cout << "Insert " << getDataField(i) << " : " << std::endl;
-		std::getline(std::cin, this->data_contact[i]);
-		if (std::cin.fail())
+		while (this->data_contact[i].empty())
 		{
-			std::cerr << "Fail to get input." << std::endl;
-			exit (1);
+			std::cout << "Insert " << getDataField(i) << ":\t";// << std::endl;
+			std::getline(std::cin, this->data_contact[i]);
+			if (i == PHONE)
+			{
+				if (!Contact::isnum(this->data_contact[i]))
+				{
+					std::cout << "only accept numbers." << std::endl;
+					this->data_contact[i] = "";
+				}
+			}
+			if (std::cin.fail())
+			{
+				std::cerr << "\nFail to get input." << std::endl;
+				exit (1);
+			}
 		}
 	}
 	if (DEBUG)
-	{
-		for (int i = 0; i < DATA_SIZE; i++)
-		{
-			std::cout << getDataField(i) << " is " << data_contact[i] << std::endl;
-		}
-	}
+		Contact::print();
 	Contact::increment();
+}
+
+bool	Contact::isnum(const std::string& s) const
+{
+	for (std::string::const_iterator it = s.begin(); it != s.end(); it++)
+	{
+		if (!std::isdigit(*it))
+			return false;
+	}
+	return true;
+}
+
+void	Contact::print( void ) const
+{
+	for (int i = 0; i < DATA_SIZE; i++)
+			std::cout << getDataField(i) << ": " << this->data_contact[i] << std::endl;
 }
 
 int	Contact::getIndex( void )
