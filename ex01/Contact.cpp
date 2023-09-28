@@ -1,6 +1,5 @@
 #include <iostream>
 #include "Contact.hpp"
-#include <climits>
 #include <cstdlib>
 
 Contact::Contact( void )
@@ -32,7 +31,7 @@ void	Contact::add( void )
 	{
 		while (this->data_contact[i].empty())
 		{
-			std::cout << "Insert " << getDataField(i) << ":\t";// << std::endl;
+			std::cout << "Insert " << getDataField(i) << ":\t";
 			std::getline(std::cin, this->data_contact[i]);
 			if (i == PHONE)
 			{
