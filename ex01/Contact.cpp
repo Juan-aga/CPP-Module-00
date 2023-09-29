@@ -27,7 +27,6 @@ void	Contact::increment( void )
 
 void	Contact::add( void )
 {
-	std::cin.clear();
 	if (DEBUG)
 		std::cout << "Add to " << Contact::_index << std::endl;
 	for (int i = 0; i < DATA_SIZE ; i++)
@@ -45,11 +44,7 @@ void	Contact::add( void )
 				}
 			}
 			if (std::cin.fail())
-			{
-				std::cerr << "\nFail to get input." << std::endl;
-				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 				return ;
-			}
 		}
 	}
 	if (DEBUG)
@@ -69,7 +64,7 @@ bool	Contact::isnum(const std::string& s) const
 
 std::string	Contact::getInfoContact( int index ) const
 {
-	if (index >= DATA_SIZE)
+	if (index >= DATA_SIZE || index < 0)
 	{
 		std::cerr << "Info Contact out of range." << std::endl;
 		return "";
