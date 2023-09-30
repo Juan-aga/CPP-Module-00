@@ -33,11 +33,13 @@ void	PhoneBook::add( void )
 
 void	PhoneBook::display( void ) const
 {
-	int index;
+	int			 index;
+	std::string	num;
 
 	if (!Contact::getIndex())
 	{
 		std::cout << "Contact list is empty." << std::endl;
+		std::cin.clear();
 		return ;
 	}
 	printFormat("index");
@@ -52,14 +54,15 @@ void	PhoneBook::display( void ) const
 		std::cout << "|" << std::endl;
 	}
 	std::cout << "Insert contact index:\t";
-	if (!(std::cin >> index) || (index < 0 || index >= Contact::getIndex()))
-	{
-		std::cerr << "Wrong index selected." << std::endl;
+//	std::getline(std::cin, num);
+	
+	if (!(std::cin >> index))
 		std::cin.clear();
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-		return ;
-	}
-	contacts[index].print();
+	else if ((index < 0 || index >= Contact::getIndex()))
+		std::cerr << "\nWrong index selected." << std::endl;
+	else
+		contacts[index].print();
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
 void	PhoneBook::printFormat( std::string s ) const
