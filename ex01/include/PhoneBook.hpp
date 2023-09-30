@@ -18,10 +18,10 @@ public:
 	void	display( void ) const;
 
 private:
-	Contact	contacts[SIZE];
+	Contact	_contacts[SIZE];
 
-	void	removeFirst( void );
-	void	printFormat( std::string s) const;
+	void	_removeFirst( void );
+	void	_printFormat( std::string s) const;
 
 };
 

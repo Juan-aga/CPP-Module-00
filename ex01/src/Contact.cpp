@@ -10,13 +10,13 @@ Contact::Contact( void )
 Contact::~Contact( void )
 {
 	for (int i = 0; i < DATA_SIZE; i++)
-		this->data_contact[i].clear();
+		this->_data_contact[i].clear();
 	Contact::_index -= 1;
 	if (DEBUG)
 		std::cout << "Destructor " << Contact::_index << " Contact" << std::endl;
 }
 
-void	Contact::increment( void )
+void	Contact::_increment( void )
 {
 	if (DEBUG)
 		std::cout << "Contact " << Contact::_index << " added" << std::endl;
@@ -29,10 +29,10 @@ void	Contact::add( void )
 		std::cout << "Add to " << Contact::_index << std::endl;
 	for (int i = 0; i < DATA_SIZE ; i++)
 	{
-		while (this->data_contact[i].empty())
+		while (this->_data_contact[i].empty())
 		{
 			std::cout << "Insert " << getDataField(i) << ":\t";
-			std::getline(std::cin, this->data_contact[i]);
+			std::getline(std::cin, this->_data_contact[i]);
 			if (std::cin.fail())
 			{
 				std::cout << std::endl;
@@ -42,10 +42,10 @@ void	Contact::add( void )
 			}
 			if (i == PHONE)
 			{
-				if (!isnum(this->data_contact[i]))
+				if (!isnum(this->_data_contact[i]))
 				{
 					std::cout << "only accept numbers." << std::endl;
-					this->data_contact[i] = "";
+					this->_data_contact[i] = "";
 				}
 			}
 			if (std::cin.fail())
@@ -54,7 +54,7 @@ void	Contact::add( void )
 	}
 	if (DEBUG)
 		Contact::print();
-	Contact::increment();
+	Contact::_increment();
 }
 
 std::string	Contact::getInfoContact( int index ) const
@@ -64,13 +64,13 @@ std::string	Contact::getInfoContact( int index ) const
 		std::cerr << "Info Contact out of range." << std::endl;
 		return "";
 	}
-	return data_contact[index];
+	return _data_contact[index];
 }
 
 void	Contact::print( void ) const
 {
 	for (int i = 0; i < DATA_SIZE; i++)
-			std::cout << getDataField(i) << ": " << this->data_contact[i] << std::endl;
+			std::cout << getDataField(i) << ": " << this->_data_contact[i] << std::endl;
 }
 
 int	Contact::getIndex( void )
