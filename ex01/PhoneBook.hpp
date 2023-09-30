@@ -4,7 +4,7 @@
 # include "Data.hpp"
 
 # ifndef SIZE
-#  define SIZE 2
+#  define SIZE 8
 # endif
 
 class  PhoneBook

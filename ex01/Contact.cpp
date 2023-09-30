@@ -1,7 +1,5 @@
 #include <iostream>
 #include "Contact.hpp"
-#include <cstdlib>
-#include <limits>
 
 Contact::Contact( void )
 {
@@ -35,9 +33,16 @@ void	Contact::add( void )
 		{
 			std::cout << "Insert " << getDataField(i) << ":\t";
 			std::getline(std::cin, this->data_contact[i]);
+			if (std::cin.fail())
+			{
+				std::cout << std::endl;
+				if (DEBUG)
+					std::cerr << "EOF in contact add." << std::endl;
+				return ;
+			}
 			if (i == PHONE)
 			{
-				if (!Contact::isnum(this->data_contact[i]))
+				if (!isnum(this->data_contact[i]))
 				{
 					std::cout << "only accept numbers." << std::endl;
 					this->data_contact[i] = "";
@@ -50,16 +55,6 @@ void	Contact::add( void )
 	if (DEBUG)
 		Contact::print();
 	Contact::increment();
-}
-
-bool	Contact::isnum(const std::string& s) const
-{
-	for (std::string::const_iterator it = s.begin(); it != s.end(); it++)
-	{
-		if (!std::isdigit(*it))
-			return false;
-	}
-	return true;
 }
 
 std::string	Contact::getInfoContact( int index ) const

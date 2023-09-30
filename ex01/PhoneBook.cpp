@@ -1,8 +1,5 @@
 #include "PhoneBook.hpp"
-#include "Data.hpp"
-#include <string>
 #include <iostream>
-#include <limits>
 
 PhoneBook::PhoneBook( void )
 {
@@ -33,7 +30,7 @@ void	PhoneBook::add( void )
 
 void	PhoneBook::display( void ) const
 {
-	int			 index;
+	int			index;
 	std::string	num;
 
 	if (!Contact::getIndex())
@@ -53,16 +50,28 @@ void	PhoneBook::display( void ) const
 			printFormat(contacts[i].getInfoContact(j));
 		std::cout << "|" << std::endl;
 	}
-	std::cout << "Insert contact index:\t";
-//	std::getline(std::cin, num);
-	
-	if (!(std::cin >> index))
-		std::cin.clear();
-	else if ((index < 0 || index >= Contact::getIndex()))
+	while (num.empty())
+	{
+		std::cout << "Insert contact index:\t";
+		std::getline(std::cin, num);
+		if (std::cin.fail())
+		{
+			std::cout << std::endl;
+			if (DEBUG)
+				std::cerr << "EOF in display" << std::endl;
+			return ;
+		}
+	}
+	if (!isnum(num))
+	{
+		std::cerr << "Index must be a number." << std::endl;
+		return ;
+	}
+	index = strToInt(num);
+	if ((index < 0 || index >= Contact::getIndex()))
 		std::cerr << "\nWrong index selected." << std::endl;
 	else
 		contacts[index].print();
-	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
 void	PhoneBook::printFormat( std::string s ) const

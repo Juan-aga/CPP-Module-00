@@ -21,8 +21,6 @@ private:
 	
 	static int	_index;
 	
-	bool		isnum(const std::string& s) const;
-	
 	static void	increment( void );
 };
 
