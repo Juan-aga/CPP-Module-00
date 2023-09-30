@@ -22,10 +22,10 @@ void	PhoneBook::add( void )
 	{
 		if (DEBUG)
 			std::cout << "Book fulll: SIZE = "<< SIZE << " CINDEX = " << size << std::endl;
-		PhoneBook::removeFirst();
+		PhoneBook::_removeFirst();
 		size -= 1;
 	}
-	contacts[size].add();
+	_contacts[size].add();
 }
 
 void	PhoneBook::display( void ) const
@@ -39,15 +39,15 @@ void	PhoneBook::display( void ) const
 		std::cin.clear();
 		return ;
 	}
-	printFormat("index");
+	_printFormat("index");
 	for (int i = 0; i < 3; i++)
-		printFormat(getDataField(i));
+		_printFormat(getDataField(i));
 	std::cout << "|" << std::endl;
 	for (int i = 0; i < SIZE && i < Contact::getIndex(); i++)
 	{
-		printFormat(std::string(1, (char)('0' + i)));
+		_printFormat(std::string(1, (char)('0' + i)));
 		for (int j = 0; j < 3; j++)
-			printFormat(contacts[i].getInfoContact(j));
+			_printFormat(_contacts[i].getInfoContact(j));
 		std::cout << "|" << std::endl;
 	}
 	while (num.empty())
@@ -69,12 +69,12 @@ void	PhoneBook::display( void ) const
 	}
 	index = strToInt(num);
 	if ((index < 0 || index >= Contact::getIndex()))
-		std::cerr << "\nWrong index selected." << std::endl;
+		std::cerr << "Wrong index selected." << std::endl;
 	else
-		contacts[index].print();
+		_contacts[index].print();
 }
 
-void	PhoneBook::printFormat( std::string s ) const
+void	PhoneBook::_printFormat( std::string s ) const
 {
 	std::cout << "|";
 	if (s.length() > 10)
@@ -91,13 +91,13 @@ void	PhoneBook::printFormat( std::string s ) const
 	}
 }
 
-void	PhoneBook::removeFirst( void )
+void	PhoneBook::_removeFirst( void )
 {
 	for (int i = 0; i < SIZE - 1; i++)
 	{
-		contacts[i] = contacts[i + 1];
+		_contacts[i] = _contacts[i + 1];
 	}
-	contacts[SIZE - 1].~Contact();
+	_contacts[SIZE - 1].~Contact();
 	if (DEBUG)
 		std::cout << "New number of contacts: " << Contact::getIndex() << std::endl;
 }

@@ -17,11 +17,11 @@ public:
 	static int	getIndex( void );
 
 private:
-	std::string data_contact[DATA_SIZE];
+	std::string _data_contact[DATA_SIZE];
 	
 	static int	_index;
 	
-	static void	increment( void );
+	static void	_increment( void );
 };
 
 #endif
