@@ -6,7 +6,7 @@
 #    By: juan-aga <juan-aga@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/24 11:04:21 by juan-aga          #+#    #+#              #
-#    Updated: 2023/10/02 11:26:05 by juan-aga         ###   ########.fr        #
+#    Updated: 2023/10/02 12:04:24 by juan-aga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,13 +20,25 @@ RM		= rm -rf
 
 SRC		= megaphone.cpp
 
+ifndef ARG
+	ARG = ""
+endif
+
+UNAME_S		:= $(shell uname -s)
+
+ifeq ($(UNAME_S), Darwin)
+		LEAKS = @leaks -q -atExit -- ./${NAME}
+else
+		LEAKS = @echo "Can't use leaks in" ${UNAME_S}.
+endif
+
 all:		${NAME}
 
 ${NAME}:	${SRC}
 		${CC} ${CFLAGS} ${SRC} -o ${NAME}
 
-leaks:	${NAME}
-		leaks -q -atExit -- ./${NAME}
+leaks:		${NAME}
+			${LEAKS} ${ARG}
 
 clean:
 
