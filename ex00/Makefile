@@ -6,7 +6,7 @@
 #    By: juan-aga <juan-aga@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/24 11:04:21 by juan-aga          #+#    #+#              #
-#    Updated: 2023/09/24 11:15:09 by juan-aga         ###   ########.fr        #
+#    Updated: 2023/10/02 11:26:05 by juan-aga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,9 @@ all:		${NAME}
 
 ${NAME}:	${SRC}
 		${CC} ${CFLAGS} ${SRC} -o ${NAME}
+
+leaks:	${NAME}
+		leaks -q -atExit -- ./${NAME}
 
 clean:
 

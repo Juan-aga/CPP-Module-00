@@ -6,7 +6,7 @@
 #    By: juan-aga <juan-aga@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/24 11:04:21 by juan-aga          #+#    #+#              #
-#    Updated: 2023/09/30 12:14:49 by juan-aga         ###   ########.fr        #
+#    Updated: 2023/10/02 11:27:07 by juan-aga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,9 @@ $(OBJ_DIR)%.opp: $(SRC_DIR)%.cpp #$(HEADERS)
 
 debug:
 			make re DEBUG=1
+
+leaks:		${NAME}
+			leaks -q -atExit -- ./${NAME}
 
 clean: 
 			$(RM) $(OBJ_DIR)
